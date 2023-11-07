@@ -73,10 +73,10 @@ function App() {
 
 function Header() {
   return (
-    <header>
+    <header style={{ paddingBottom: "2rem" }}>
       <img src="logo192.png" alt="Logo" />
       <h1 style={{ color: "white" }}>React Flashcards</h1>
-      <p style={{ color: "white" }}>
+      <p style={{ color: "white", margin: "0" }}>
         🧠Expand Your React Knowledge, One Flashcard at a Time!🐌
       </p>
     </header>
@@ -85,22 +85,42 @@ function Header() {
 
 function Form() {
   return (
-    <form style={{ backgroundColor: "#232731" }}>
-      <label style={{ color: "white" }}>Question:</label>
+    <form className="formStyle" style={{ backgroundColor: "#232731" }}>
+      <label style={{ color: "white", columnWidth: "3rem" }}>Question:</label>
       <input type="text" />
       <label style={{ color: "white" }}>Answer:</label>
       <input type="text" />
-      <button style={{ color: "white", backgroundColor:"#07B1DF" , borderRadius:"25%"}}>Add</button>
+      <button
+        style={{
+          color: "white",
+          backgroundColor: "#07B1DF",
+          borderRadius: "25%",
+        }}
+      >
+        Add
+      </button>
     </form>
   );
 }
 
 function Flashcards() {
   return (
-    <section>
+    <section class="flashcard-grid">
       {flashCardArray.map(({ id, question }) => {
         return (
-          <div style={{backgroundColor:"#323949"}} className="flashcard" key={id}>
+          <div
+            style={{
+              backgroundColor: "#323949",
+              height: "5rem",
+              width: "25rem",
+              borderRadius: "3%",
+              color: "white",
+              textAlign: "center",
+              padding: "0 30%",
+            }}
+            className="flashcard"
+            key={id}
+          >
             <p>🤔</p>
             <p>{question}</p>
           </div>
@@ -112,7 +132,7 @@ function Flashcards() {
 
 function Footer() {
   return (
-    <footer style={{backgroundColor: "#16181F", color: "white"}}>
+    <footer style={{ backgroundColor: "#16181F", color: "white" }}>
       Built with React <img id="footer-logo" src="logo192.png" alt="Logo" />
     </footer>
   );

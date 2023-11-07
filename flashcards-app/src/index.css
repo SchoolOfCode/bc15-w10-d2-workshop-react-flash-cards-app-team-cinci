@@ -7,20 +7,35 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 header {
-  background-color: #16181F;
+  background-color: #16181f;
   text-align: center;
 }
-
+form {
+  text-align: center;
+}
+.formStyle {
+  display: grid;
+  justify-content: space-evenly;
+  grid-template-columns: repeat(5, 1fr);
+  /* column-gap: 20%; */
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.flashcard-grid {
+  display: grid;
+  background-color: #232731;
+  grid-template-columns: repeat(
+    3,
+    1fr
+  ); /* Adjust the number of columns as needed */
+  gap: 1rem; /* Adjust the gap between flashcards as needed */
 }
 
 footer {
   text-align: center;
 }
-#footer-logo{
+#footer-logo {
   height: 0.9rem;
-  
-
 }
