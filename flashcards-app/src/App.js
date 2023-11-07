@@ -85,12 +85,12 @@ function Header() {
 
 function Form() {
   return (
-    <form>
-      <label>Question:</label>
+    <form style={{ backgroundColor: "#232731" }}>
+      <label style={{ color: "white" }}>Question:</label>
       <input type="text" />
-      <label>Answer:</label>
+      <label style={{ color: "white" }}>Answer:</label>
       <input type="text" />
-      <button>Add</button>
+      <button style={{ color: "white", backgroundColor:"#07B1DF" , borderRadius:"25%"}}>Add</button>
     </form>
   );
 }
@@ -100,7 +100,7 @@ function Flashcards() {
     <section>
       {flashCardArray.map(({ id, question }) => {
         return (
-          <div className="flashcard" key={id}>
+          <div style={{backgroundColor:"#323949"}} className="flashcard" key={id}>
             <p>🤔</p>
             <p>{question}</p>
           </div>
@@ -112,9 +112,9 @@ function Flashcards() {
 
 function Footer() {
   return (
-    <p>
-      Built with React <img src="logo192.png" alt="Logo" />
-    </p>
+    <footer style={{backgroundColor: "#16181F", color: "white"}}>
+      Built with React <img id="footer-logo" src="logo192.png" alt="Logo" />
+    </footer>
   );
 }
 
