@@ -73,11 +73,11 @@ function App() {
 
 function Header() {
   return (
-    <header style={{ paddingBottom: "2rem" }}>
+    <header style={{ paddingTop: "2rem", paddingBottom: "2rem" }}>
       <img src="logo192.png" alt="Logo" />
-      <h1 style={{ color: "white" }}>React Flashcards</h1>
-      <p style={{ color: "white", margin: "0" }}>
-        🧠Expand Your React Knowledge, One Flashcard at a Time!🐌
+      <h1 style={{ color: "white", fontSize: "50px" }}>React Flashcards</h1>
+      <p style={{ color: "white", margin: "0", fontSize: "25px" }}>
+        🧠 Expand Your React Knowledge, One Flashcard at a Time! 🐌
       </p>
     </header>
   );
@@ -86,15 +86,45 @@ function Header() {
 function Form() {
   return (
     <form className="formStyle" style={{ backgroundColor: "#232731" }}>
-      <label style={{ color: "white", columnWidth: "3rem" }}>Question:</label>
-      <input type="text" />
-      <label style={{ color: "white" }}>Answer:</label>
-      <input type="text" />
+      <label
+        style={{ color: "white", columnWidth: "3rem", fontSize: "1.3rem" }}
+      >
+        Question:
+      </label>
+      <input
+        type="text"
+        style={{
+          backgroundColor: "#2f323c",
+          border: "3px solid #31343e",
+          borderRadius: "9px",
+          width: "19rem",
+          height: "40px",
+        }}
+      />
+      <label
+        style={{ color: "white", columnWidth: "3rem", fontSize: "1.3rem" }}
+      >
+        Answer:
+      </label>
+      <input
+        type="text"
+        style={{
+          backgroundColor: "#2f323c",
+          border: "3px solid #31343e",
+          borderRadius: "9px",
+          width: "19rem",
+          height: "40px",
+        }}
+      />
       <button
         style={{
           color: "white",
           backgroundColor: "#07B1DF",
-          borderRadius: "25%",
+          borderRadius: "9px",
+          border: "3px solid #07B1DF",
+          height: "45px",
+          width: "5rem",
+          fontSize: "1.1rem",
         }}
       >
         Add
@@ -105,24 +135,38 @@ function Form() {
 
 function Flashcards() {
   return (
-    <section class="flashcard-grid">
+    <section className="flashcard-grid">
       {flashCardArray.map(({ id, question }) => {
         return (
           <div
             style={{
               backgroundColor: "#323949",
-              height: "5rem",
-              width: "25rem",
-              borderRadius: "3%",
+              height: "11rem",
+              width: "20rem",
+              borderRadius: "5px",
               color: "white",
-              textAlign: "center",
-              padding: "0 30%",
+              fontSize: "18px",
+              display: "flex" /* Enable flexbox layout */,
+              flexDirection: "column" /* Set flex direction to column */,
+              justifyContent: "center" /* Center items vertically */,
+              alignItems: "center" /* Center items horizontally */,
+              padding: "0.5rem",
+              margin: "0.5rem",
+              paddingTop: "0.1rem",
             }}
             className="flashcard"
             key={id}
           >
-            <p>🤔</p>
-            <p>{question}</p>
+            <p
+              style={{
+                fontSize: "36px",
+                marginBottom: "0.2rem",
+                marginTop: "0.2rem",
+              }}
+            >
+              🤔
+            </p>
+            <p style={{ textAlign: "center" }}>{question}</p>
           </div>
         );
       })}
