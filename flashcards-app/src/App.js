@@ -43,7 +43,7 @@ const flashCardArray = [
   },
   {
     id: "q8",
-    question: "What are some common caommands in react?",
+    question: "What are some common commands in react?",
     answer:
       "npx create-react-app my-app, cd my-app, npm start and npm run build",
   },
@@ -66,6 +66,7 @@ function App() {
       <Header />
       <Form />
       <Flashcards />
+      <Footer />
     </>
   );
 }
@@ -74,8 +75,10 @@ function Header() {
   return (
     <header>
       <img src="logo192.png" alt="Logo" />
-      <h1>React Flashcards</h1>
-      <p>🧠Expand Your React Knowledge, One Flashcard at a Time!🐌</p>
+      <h1 style={{ color: "white" }}>React Flashcards</h1>
+      <p style={{ color: "white" }}>
+        🧠Expand Your React Knowledge, One Flashcard at a Time!🐌
+      </p>
     </header>
   );
 }
@@ -104,6 +107,14 @@ function Flashcards() {
         );
       })}
     </section>
+  );
+}
+
+function Footer() {
+  return (
+    <p>
+      Built with React <img src="logo192.png" alt="Logo" />
+    </p>
   );
 }
 
