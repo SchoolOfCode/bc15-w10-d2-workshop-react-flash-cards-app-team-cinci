@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const flashCardArray = [
   {
     id: "q1",
@@ -83,7 +85,20 @@ function Header() {
   );
 }
 
-function Form() {
+export function Form() {
+  const [question, setQuestion] = useState('');
+  const [answer, setAnswer] = useState('');
+  const [NewFlashCard, setNewFlashCard]= useState('');
+  
+  function handleQuestionChange(e) {
+    setQuestion(e.target.value);
+    setNewFlashCard(e.target.value + ' ' + question);
+  }
+
+  function handleAnswerChange(e) {
+    setAnswer(e.target.value);
+    setNewFlashCard(answer + ' ' + e.target.value);
+  }
   return (
     <form className="formStyle" style={{ backgroundColor: "#232731" }}>
       <label
@@ -93,6 +108,8 @@ function Form() {
       </label>
       <input
         type="text"
+        value={question}
+        onChange={handleQuestionChange}
         style={{
           backgroundColor: "#2f323c",
           border: "3px solid #31343e",
@@ -108,6 +125,8 @@ function Form() {
       </label>
       <input
         type="text"
+        value={answer}
+        onChange={handleAnswerChange}
         style={{
           backgroundColor: "#2f323c",
           border: "3px solid #31343e",
@@ -117,6 +136,7 @@ function Form() {
         }}
       />
       <button
+        onClick={NewFlashCard}
         style={{
           color: "white",
           backgroundColor: "#07B1DF",
@@ -132,13 +152,48 @@ function Form() {
     </form>
   );
 }
+function showAnswer(){
+  return (
+    <div
+      style={{
+        backgroundColor: "#07B1DF",
+        height: "11rem",
+        width: "20rem",
+        borderRadius: "5px",
+        color: "white",
+        fontSize: "18px",
+        display: "flex" /* Enable flexbox layout */,
+        flexDirection: "column" /* Set flex direction to column */,
+        justifyContent: "center" /* Center items vertically */,
+        alignItems: "center" /* Center items horizontally */,
+        padding: "0.5rem",
+        margin: "0.5rem",
+        paddingTop: "0.1rem",
+      }}
+      className="flashcard"
+      key={id}
+    >
+      <p
+        style={{
+          fontSize: "36px",
+          marginBottom: "0.2rem",
+          marginTop: "0.2rem",
+        }}
+      >
+        🤔
+      </p>
+      <p style={{ textAlign: "center" }}>{answer}</p>
+    </div>
+
+)}
 
 function Flashcards() {
   return (
     <section className="flashcard-grid">
-      {flashCardArray.map(({ id, question }) => {
+      {flashCardArray.map(({ id, question, answer }) => {
         return (
           <div
+          onClick={showAnswer}
             style={{
               backgroundColor: "#323949",
               height: "11rem",
