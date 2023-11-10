@@ -6,37 +6,36 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 header {
   background-color: #16181f;
   text-align: center;
 }
+
 form {
   text-align: center;
   padding-top: 1.75rem;
   padding-bottom: 1.75rem;
 }
-/* .formStyle {
-  display: grid;
-  justify-content: space-evenly;
-  grid-template-columns: repeat(5, 250px);
-  column-gap: 7px;
-  /* column-gap: 20%;
- } */
+
 .formStyle {
   display: flex;
   align-items: center; /* Align items vertically to the center */
   justify-content: center; /* Align items horizontally to the center */
   gap: 15px; /* Adjust the gap value to add spacing between elements */
 }
+
 .formStyle label,
 .formStyle input,
 .formStyle button {
   margin-right: 17px; /* Adjust the margin value to add spacing between elements */
 }
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
 .flashcard-grid {
   display: grid;
   background-color: #232731;
@@ -53,11 +52,13 @@ code {
 .flashcard {
   width: 100%; /* Set the width of each individual flashcard to 100% */
 }
+
 footer {
   text-align: center;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
+
 #footer-logo {
   height: 0.9rem;
 }

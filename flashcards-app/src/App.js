@@ -1,6 +1,66 @@
 import { useState } from "react";
+import Header from "./Header";
+import Form from "./Form";
+import Flashcards from "./Flashcards";
+import Footer from "./Footer";
+// import { useState } from "react";
+// import "./App.css";
 
-const flashCardArray = [
+// // React: Building UIs
+
+// // Component:
+// //    - Reusable piece of the UI
+// //    - Functions starts with a capital letter
+// //    - Return some JSX (or anything that React can render)
+
+// // JSX: Language for expressing UIs
+
+// // Props:
+// //    Input to a component
+// //    Passed from parent to child in key={value} pairs
+// //    Child can then extract them from the props object.
+
+// // State:
+// //    React variable -> Remember / keeping track of things
+// //    "reactive" -> when you change the information, the UI updates (to keep in sync with the new changes)
+
+// // useState:
+// //    helpful for creating state
+// //    returns an array contains 2 things:
+// //      current value of that reactive variable
+// //      a way to change that reactive variable
+
+// function App() {
+//   // create some state to keep track of the count
+//   // 'reactive'
+//   // destructuring arrays in JS
+//   // destructuring assignments
+//   const [count, setCount] = useState(0);
+
+//   console.log("App has rendered");
+
+//   function incrementCount() {
+//     // changing state triggers a rerender
+//     // rerender -> React will call the component function
+//     setCount(prev => prev + 1);
+//   }
+
+//   // Change the count when a button is clicked
+//   //    Create a button
+//   //    Event listener on the button
+//   //    when the button is clicked, increment the value
+//   //    Can skip with React: Update the DOM manually to reflect the incremented value
+
+//   return (
+//     <main>
+//       <button onClick={incrementCount}>Click me to increment</button>
+//       {count}
+//     </main>
+//   );
+// }
+
+// export default App;
+export const flashCardArray = [
   {
     id: "q1",
     question: "What is the Virtual DOM in React?",
@@ -63,150 +123,35 @@ const flashCardArray = [
 ];
 
 function App() {
+  const [flashcardObjects, setflashcardObjects] = useState(flashCardArray);
+
+  function deleteFlashcardObjectById(idToDelete) {
+    setflashcardObjects((prev) => {
+      return prev.filter((obj) => obj.id !== idToDelete);
+    });
+  }
+  function addFlashcardObject(flashcardObject) {
+    setflashcardObjects((prev) => {
+      const created = {
+        id: window.crypto.randomUUID(),
+        question: flashcardObject.question,
+        answer: flashcardObject.answer,
+      };
+      const appended = prev.concat(created);
+      return appended;
+    });
+  }
+
   return (
     <>
       <Header />
-      <Form />
-      <Flashcards />
+      <Form addFlashcard={addFlashcardObject} />
+      <Flashcards
+        flashcardList={flashcardObjects}
+        deleteFlashcard={deleteFlashcardObjectById}
+      />
       <Footer />
     </>
-  );
-}
-
-function Header() {
-  return (
-    <header style={{ paddingTop: "2rem", paddingBottom: "2rem" }}>
-      <img src="logo192.png" alt="Logo" />
-      <h1 style={{ color: "white", fontSize: "50px" }}>React Flashcards</h1>
-      <p style={{ color: "white", margin: "0", fontSize: "25px" }}>
-        🧠 Expand Your React Knowledge, One Flashcard at a Time! 🐌
-      </p>
-    </header>
-  );
-}
-
-export function Form() {
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
-  const [NewFlashCard, setNewFlashCard] = useState("");
-
-  function handleQuestionChange(e) {
-    setQuestion(e.target.value);
-    setNewFlashCard(e.target.value + " " + question);
-  }
-
-  function handleAnswerChange(e) {
-    setAnswer(e.target.value);
-    setNewFlashCard(answer + " " + e.target.value);
-  }
-  return (
-    <form className="formStyle" style={{ backgroundColor: "#232731" }}>
-      <label
-        style={{ color: "white", columnWidth: "3rem", fontSize: "1.3rem" }}
-      >
-        Question:
-      </label>
-      <input
-        type="text"
-        value={question}
-        onChange={handleQuestionChange}
-        style={{
-          backgroundColor: "#2f323c",
-          border: "3px solid #31343e",
-          borderRadius: "9px",
-          width: "19rem",
-          height: "40px",
-        }}
-      />
-      <label
-        style={{ color: "white", columnWidth: "3rem", fontSize: "1.3rem" }}
-      >
-        Answer:
-      </label>
-      <input
-        type="text"
-        value={answer}
-        onChange={handleAnswerChange}
-        style={{
-          backgroundColor: "#2f323c",
-          border: "3px solid #31343e",
-          borderRadius: "9px",
-          width: "19rem",
-          height: "40px",
-        }}
-      />
-      <button
-        onClick={NewFlashCard}
-        style={{
-          color: "white",
-          backgroundColor: "#07B1DF",
-          borderRadius: "9px",
-          border: "3px solid #07B1DF",
-          height: "45px",
-          width: "5rem",
-          fontSize: "1.1rem",
-        }}
-      >
-        Add
-      </button>
-    </form>
-  );
-}
-
-function Flashcards() {
-  const [flashCardArray0, setFlashCardArray] = useState(flashCardArray);
-
-  const handleClick = (id) => {
-    setFlashCardArray((prevArray) => {
-      return prevArray.filter((flashcard) => flashcard.id !== id);
-    });
-  };
-  return (
-    <section className="flashcard-grid">
-      {flashCardArray0.map(({ id, question }) => {
-        return (
-          <div
-            onClick={() => handleClick(id)}
-            style={{
-              backgroundColor: "#323949",
-              height: "11rem",
-              width: "20rem",
-              borderRadius: "5px",
-              color: "white",
-              fontSize: "18px",
-              display: "flex" /* Enable flexbox layout */,
-              flexDirection: "column" /* Set flex direction to column */,
-              justifyContent: "center" /* Center items vertically */,
-              alignItems: "center" /* Center items horizontally */,
-              padding: "0.5rem",
-              margin: "0.5rem",
-              paddingTop: "0.1rem",
-            }}
-            className="flashcard"
-            key={id}
-          >
-            <p
-              style={{
-                fontSize: "36px",
-                marginBottom: "0.2rem",
-                marginTop: "0.2rem",
-              }}
-            >
-              🤔
-            </p>
-            <p style={{ textAlign: "center" }}>{question}</p>
-          </div>
-        );
-      })}
-    </section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer style={{ backgroundColor: "#16181F", color: "white" }}>
-      Built with React <img id="footer-logo" src="logo192.png" alt="Logo" />
-    </footer>
   );
 }
 
